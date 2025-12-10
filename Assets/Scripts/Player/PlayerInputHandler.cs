@@ -10,11 +10,13 @@ public class PlayerInputHandler : MonoBehaviour
     private InputAction jumpAction;
     private InputAction attackMeleeAction;
     private InputAction attackRangedAction;
+    private InputAction crouchAction;
 
     public Vector2 MoveInput { get; private set; }
     public bool JumpPressed { get; private set; }
     public bool AttackMeleePressed { get; private set; }
     public bool AttackRangedPressed { get; private set; }
+    public bool CrouchPressed { get; private set; }
 
     void Awake()
     {
@@ -24,6 +26,7 @@ public class PlayerInputHandler : MonoBehaviour
         jumpAction = playerMap.FindAction("Jump");
         attackMeleeAction = playerMap.FindAction("AttackMelee");
         attackRangedAction = playerMap.FindAction("AttackRanged");
+        crouchAction = playerMap.FindAction("Crouch");
     }
 
     void OnEnable()
@@ -37,6 +40,9 @@ public class PlayerInputHandler : MonoBehaviour
 
         attackMeleeAction.performed += ctx => AttackMeleePressed = true;
         attackRangedAction.performed += ctx => AttackRangedPressed = true;
+
+        crouchAction.performed += ctx => CrouchPressed = true;
+        crouchAction.canceled += ctx => CrouchPressed = false;
     }
 
     void OnDisable()
@@ -47,4 +53,5 @@ public class PlayerInputHandler : MonoBehaviour
     public void ConsumeJump() => JumpPressed = false;
     public void ConsumeMelee() => AttackMeleePressed = false;
     public void ConsumeRanged() => AttackRangedPressed = false;
+    public void ConsumeCrouch() => CrouchPressed = false;
 }

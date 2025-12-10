@@ -15,6 +15,11 @@ public class PlayerControllerCC2D : MonoBehaviour
     public float groundDistance = 0.1f;
     public LayerMask groundLayer;
 
+    [Header("Crouch")]
+    public float crouchHeight = 1f;      // Altura al agacharse
+    private float originalHeight;
+
+
     private CharacterController controller;
     private PlayerInputHandler input;
     private Vector3 velocity;
@@ -24,6 +29,7 @@ public class PlayerControllerCC2D : MonoBehaviour
     {
         controller = GetComponent<CharacterController>();
         input = GetComponent<PlayerInputHandler>();
+        originalHeight = controller.height;
     }
 
     void Update()
@@ -43,13 +49,43 @@ public class PlayerControllerCC2D : MonoBehaviour
         // SALTO
         if (input.JumpPressed && isGrounded)
         {
+            // Reseteamos velocidad vertical para cancelar el salto previo
+            velocity.y = 0f;
+
+            // Aplicamos la fuerza de salto
             velocity.y = Mathf.Sqrt(jumpForce * -2f * gravity);
             input.ConsumeJump();
         }
 
+
         // GRAVEDAD
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
+
+        // CROUCH
+        if (input.CrouchPressed && isGrounded)
+        {
+            controller.height = crouchHeight;
+            controller.center = new Vector3(0, crouchHeight / 2f, 0); // centro ajustado
+        }
+        else
+        {
+            if (CanStandUp())
+            {
+                controller.height = originalHeight;
+                controller.center = new Vector3(0, originalHeight / 100f, 0);
+            }
+        }
+
+        float speed = input.CrouchPressed ? moveSpeed * 0.5f : moveSpeed;
+        controller.Move(move * speed * Time.deltaTime);
+
+    }
+
+    private bool CanStandUp()
+    {
+        float castDistance = originalHeight - crouchHeight;
+        return !Physics.Raycast(transform.position, Vector3.up, castDistance, groundLayer);
     }
 
     void OnDrawGizmosSelected()
