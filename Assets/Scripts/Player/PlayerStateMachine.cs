@@ -15,17 +15,12 @@ public class PlayerStateMachine : MonoBehaviour
     public Transform groundCheck;
     public float groundRadius = 0.2f;
     public LayerMask groundLayer;
-
-    // ---------------------------
-    //  PRIVATE VARIABLES
-    // ---------------------------
-    private PlayerControls controls;
-    private Vector2 moveInput;
-    private bool jumpPressed;
-    private bool isGrounded;
-
-    private Animator animator;
-    private Rigidbody2D rb;
+    public Animator animator;
+    public Vector2 moveInput;
+    public bool jumpPressed;
+    public bool isGrounded;
+    public PlayerControls controls;
+    public Rigidbody2D rb;
 
     // ---------------------------
     //  UNITY METHODS
