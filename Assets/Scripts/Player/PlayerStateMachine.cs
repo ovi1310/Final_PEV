@@ -173,11 +173,11 @@ public class PlayerStateMachine : MonoBehaviour
             ChangeState(PlayerState.Jump);
             jumpPressed = false;
         }
-        if (inputHandler != null && inputHandler.AttackRangedPressed && combat.CanRangedAttack())
-        {
-            ChangeState(PlayerState.AttackRanged);
-            inputHandler.ConsumeRanged();
-        }
+        //if (inputHandler != null && inputHandler.AttackRangedPressed && combat.CanRangedAttack())
+        //{
+        //    ChangeState(PlayerState.AttackRanged);
+        //    inputHandler.ConsumeRanged();
+        //}
 
     }
 
@@ -191,11 +191,11 @@ public class PlayerStateMachine : MonoBehaviour
             ChangeState(PlayerState.Jump);
             jumpPressed = false;
         }
-        if (inputHandler != null && inputHandler.AttackRangedPressed && combat.CanRangedAttack())
-        {
-            ChangeState(PlayerState.AttackRanged);
-            inputHandler.ConsumeRanged();
-        }
+        //if (inputHandler != null && inputHandler.AttackRangedPressed && combat.CanRangedAttack())
+        //{
+        //    ChangeState(PlayerState.AttackRanged);
+        //    inputHandler.ConsumeRanged();
+        //}
 
     }
 
@@ -218,24 +218,19 @@ public class PlayerStateMachine : MonoBehaviour
             ChangeState(PlayerState.Idle);
     }
 
-    void StateAttackRanged()
-    {
-            // 1️⃣ Dirección del disparo
-            Vector3 dir = transform.right; // dispara hacia donde mira el jugador
+    //void StateAttackRanged()
+    //{
+    //    Vector3 dir = transform.localScale.x > 0 ? Vector3.right : Vector3.left;
 
-            // 2️⃣ Ejecutar ataque
-            if (combat != null)
-            {
-                combat.RangedAttack(dir);
-            }
+    //    if (combat != null)
+    //        combat.RangedAttack(dir);
 
-            // 3️⃣ Reseteamos el input para que no dispare otra vez inmediatamente
-            inputHandler.ConsumeRanged();
+    //    inputHandler.ConsumeRanged();
 
-            // 4️⃣ Volver a Idle automáticamente
-            ChangeState(PlayerState.Idle);
+    //    animator.Play("AttackRanged"); // si tienes animación
+    //    ChangeState(PlayerState.Idle);
+    //}
 
-    }
 
     void StateAttackMelee() { }
     void StateInteract() { }

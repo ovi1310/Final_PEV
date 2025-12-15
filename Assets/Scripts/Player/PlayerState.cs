@@ -13,17 +13,17 @@ public enum PlayerState
     TakingDamage
 }
 
-public class PlayerAttackRangedState : PlayerState
-{
-    public PlayerAttackRangedState(PlayerStateMachine sm) : base(sm) { }
+//public class PlayerAttackRangedState : PlayerState
+//{
+//    public PlayerAttackRangedState(PlayerStateMachine sm) : base(sm) { }
 
-    public override void Enter()
-    {
-        Vector3 dir = stateMachine.transform.right;
+//    //public override void Enter()
+//    //{
+//    //    Vector3 dir = stateMachine.transform.right;
 
-        stateMachine.Combat.RangedAttack(dir);
-        stateMachine.Input.ConsumeRanged();
+//    //    stateMachine.Combat.RangedAttack(dir);
+//    //    stateMachine.Input.ConsumeRanged();
 
-        stateMachine.ChangeState(PlayerStateType.Idle);
-    }
-}
+//    //    stateMachine.ChangeState(PlayerStateType.Idle);
+//    //}
+//}

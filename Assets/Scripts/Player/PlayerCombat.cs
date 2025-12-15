@@ -41,10 +41,12 @@ public class PlayerCombat : MonoBehaviour
     {
         if (!CanRangedAttack()) return;
 
-        GameObject proj = Instantiate(projectilePrefab, firePoint.position, Quaternion.identity);
+        if (projectilePrefab == null || firePoint == null) return;
 
+        GameObject proj = Instantiate(projectilePrefab, firePoint.position, Quaternion.identity);
         proj.GetComponent<Projectile>().SetDirection(direction);
 
         lastRangedTime = Time.time;
     }
+
 }

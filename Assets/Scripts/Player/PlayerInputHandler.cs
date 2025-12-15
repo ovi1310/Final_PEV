@@ -65,6 +65,6 @@ public class PlayerInputHandler : MonoBehaviour
 
     public void ConsumeJump() => JumpPressed = false;
     public void ConsumeMelee() => AttackMeleePressed = false;
-    public void ConsumeRanged() => AttackRangedPressed = false;
+    //public void ConsumeRanged() => AttackRangedPressed = false;
     public void ConsumeCrouch() => CrouchPressed = false;
 }
