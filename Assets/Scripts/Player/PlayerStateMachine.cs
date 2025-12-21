@@ -214,4 +214,17 @@ public class PlayerStateMachine : MonoBehaviour
             Gizmos.DrawWireSphere(groundCheck.position, groundRadius);
         }
     }
+
+    public BackgroundManager backgroundManager;
+
+void MatarPersonaje()
+{
+    backgroundManager.MostrarDistopia();
+}
+
+void PerdonarPersonaje()
+{
+    backgroundManager.MostrarUtopia();
+}
+
 }
