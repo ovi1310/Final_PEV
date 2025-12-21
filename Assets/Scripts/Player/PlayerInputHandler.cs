@@ -3,19 +3,6 @@ using UnityEngine.InputSystem;
 
 public class PlayerInputHandler : MonoBehaviour
 {
-    public bool RangedPressed;
-
-    public void OnRangedAttack(InputAction.CallbackContext context)
-    {
-        if (context.performed)
-            RangedPressed = true;
-    }
-
-    public void ConsumeRanged()
-    {
-        RangedPressed = false;
-    }
-
     public InputActionAsset inputActions;
 
     private InputActionMap playerMap;
@@ -65,6 +52,6 @@ public class PlayerInputHandler : MonoBehaviour
 
     public void ConsumeJump() => JumpPressed = false;
     public void ConsumeMelee() => AttackMeleePressed = false;
-    //public void ConsumeRanged() => AttackRangedPressed = false;
+    public void ConsumeRanged() => AttackRangedPressed = false;
     public void ConsumeCrouch() => CrouchPressed = false;
 }
